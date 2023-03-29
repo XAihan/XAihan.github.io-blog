@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Js基础引导（四）——操作符 | 砚知</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="你好，朋友。欢迎进入JS基础引导——操作符 概述操作符，说简单点，就是协助我们进行运算（操作数据值）的操作符。包括：算数操作符，位操作符，关系操作符，相等操作符PS：当应用于对象是，相应的操作符通常会调用对象的valueof（）方法和（或）toString（）方法。 一元操作符只能操作一个值的操作符就是一元操作符。顾名思义，一元操作符的使用对象只有一个。 常用符号：++(数值加1) - -（数值减">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Js基础引导（四）——操作符">
+<meta property="og:url" content="https://xaihan.github.io/blog/2019/07/15/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E6%93%8D%E4%BD%9C%E7%AC%A6/">
+<meta property="og:site_name" content="砚知">
+<meta property="og:description" content="你好，朋友。欢迎进入JS基础引导——操作符 概述操作符，说简单点，就是协助我们进行运算（操作数据值）的操作符。包括：算数操作符，位操作符，关系操作符，相等操作符PS：当应用于对象是，相应的操作符通常会调用对象的valueof（）方法和（或）toString（）方法。 一元操作符只能操作一个值的操作符就是一元操作符。顾名思义，一元操作符的使用对象只有一个。 常用符号：++(数值加1) - -（数值减">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-15T12:26:18.000Z">
+<meta property="article:modified_time" content="2022-08-30T06:46:43.923Z">
+<meta property="article:author" content="XConb">
+<meta property="article:tag" content="基础知识">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="砚知" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">砚知</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">水墨画出的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xaihan.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-post-basics/Js基础引导（四）——操作符" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/07/15/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="article-date">
+  <time class="dt-published" datetime="2019-07-15T12:26:18.000Z" itemprop="datePublished">2019-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Js基础引导（四）——操作符
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>你好，朋友。<br><strong>欢迎进入JS基础引导——操作符</strong></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>操作符，说简单点，就是协助我们进行运算（操作数据值）的操作符。<br>包括：<strong>算数操作符，位操作符，关系操作符，相等操作符</strong><br>PS：当应用于对象是，相应的操作符通常会调用对象的valueof（）方法和（或）toString（）方法。</p>
+<h2 id="一元操作符"><a href="#一元操作符" class="headerlink" title="一元操作符"></a>一元操作符</h2><p>只能<strong>操作一个值</strong>的操作符就是一元操作符。<br>顾名思义，一元操作符的<strong>使用对象只有一个</strong>。</p>
+<p>常用符号：<br><strong>++(数值加1) - -（数值减一） +（原来值不变） -（原来值的负数）</strong></p>
+<p>代码演示</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;   <span class="comment">//定义a为100</span></span><br><span class="line">a1 = a++;	   <span class="comment">// 得到结果 a为 101</span></span><br><span class="line">a2 = a--;		<span class="comment">//得到结果 a为99</span></span><br><span class="line">a3 = +a;		<span class="comment">// 得到结果 a为100</span></span><br><span class="line">a4 = -a;		<span class="comment">// 得到结果 a为-100</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>++ 和- - 有两个版本：前置和后置，简而言之，就是 a++ 和 ++a 是用区别的</strong><br><strong>区别在于，如果在一个语句中的话，++a为先对a进行++操作，在进行其他运算，a++则是先进行其他操作，然后再执行++操作。</strong><br>代码演示</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">100</span> ;</span><br><span class="line"><span class="keyword">var</span> a1 = ++a +<span class="number">10</span>;    <span class="comment">//拆分为 a1 = a + 1 , a = a + 10.结果为111.</span></span><br><span class="line"><span class="keyword">var</span> a2 = a++ +<span class="number">10</span>;	 <span class="comment">//拆分为 a2 = a +10 , a= a + 1; 得到结果为110.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="位操作符"><a href="#位操作符" class="headerlink" title="位操作符"></a>位操作符</h2><p>不常用符号：<strong>位操作符系列（不常用，就不做介绍了。初学者用不上。）</strong><br>位操作符用于最基本的层次上，<strong>二进制操作</strong>，对于初学者来说，不会接触到的。</p>
+<h2 id="布尔操作符（极其重要！！！）"><a href="#布尔操作符（极其重要！！！）" class="headerlink" title="布尔操作符（极其重要！！！）"></a>布尔操作符（极其重要！！！）</h2><p>布尔操作符的作用在于：<strong>测试两个值关系的能力。</strong><br>布尔表达式有三个：与（&amp;&amp;）或（||）非（！）</p>
+<h5 id="逻辑与"><a href="#逻辑与" class="headerlink" title="逻辑与"></a>逻辑与</h5><p>逻辑与由两个和号（&amp;&amp;）表示，如下面的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = a &amp;&amp; b</span><br></pre></td></tr></table></figure>
+<p>要求：只有两个值都是true（即a&#x3D;b&#x3D;true），返回值才是true（result &#x3D; true）</p>
+<h5 id="逻辑或"><a href="#逻辑或" class="headerlink" title="逻辑或"></a>逻辑或</h5><p>逻辑或由两个竖线符号（||）表示，如下面的例子：<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = a || b</span><br></pre></td></tr></table></figure><br>要求：只有两个值其中一个是true（即a&#x3D;true或者b &#x3D; true），返回值便是true（result &#x3D; true）</p>
+<h5 id="逻辑或-1"><a href="#逻辑或-1" class="headerlink" title="逻辑或"></a>逻辑或</h5><p>逻辑或由一个叹号符号（！）表示，如下面的例子：<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result =  ！result</span><br></pre></td></tr></table></figure><br>要求：返回值是他的相反。比如，如果他本来是true，那么返回的就是false，反之亦然。</p>
+<h2 id="二元操作符"><a href="#二元操作符" class="headerlink" title="二元操作符"></a>二元操作符</h2><p>在红包书中，将+-*&#x2F;（加减乘除）分为四块来具体讲解，我在这里统一以二元操作符命名。</p>
+<p>二元操作符：顾名思义，是对于两个值进行操作的操作符。</p>
+<p>常见运算符：（+）加，（-）减，乘（*），（&#x2F;）除。</p>
+<h2 id="关系操作符"><a href="#关系操作符" class="headerlink" title="关系操作符"></a>关系操作符</h2><p>关系操作符便是我们自小熟知的比大小。（小于：&lt;,大于：&gt;,小于等于：&lt;&#x3D;,大于等于：&gt;&#x3D;）。<br>当进行判断之后，会返回一个布尔值（true或者false），如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;			<span class="comment">//定义a为3</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">5</span>;			<span class="comment">//定义b为5</span></span><br><span class="line"><span class="keyword">var</span> c= a &gt; b;		<span class="comment">// 因为a小于b，所以返回false，c为false。</span></span><br><span class="line"><span class="keyword">var</span> d = a&lt; b;		<span class="comment">//同理，因为b大于a，所以返回true，d为true。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="相等操作符"><a href="#相等操作符" class="headerlink" title="相等操作符"></a>相等操作符</h2><p>相等操作符，判断两个数值是否相等。他的返回类型也是布尔值，（true或者false）。<br>相等操作符分为 <strong>相等（&#x3D;&#x3D;）</strong>和<strong>全等（ &#x3D;&#x3D;&#x3D;）</strong>。<br>PS：** 再编程语言中，一个等号（&#x3D;）代表的是赋值。 ** 如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = a * a; 	<span class="comment">//在程序员的眼中，这是赋值运算，意思是，经过这个步骤，a的大小变为原来的二倍。</span></span><br></pre></td></tr></table></figure>
+<pre><code>相等：值相等就行，如果两个变量的类型不同，会自动进行强转，而后比较。
+全等：必须要两个变量完全相等，无论是值还是类型。
+</code></pre>
+<p>如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;		<span class="comment">//定义a为数字123；</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="string">&#x27;123&#x27;</span>;		<span class="comment">//定义b为字符串123；</span></span><br><span class="line">a == b ;			<span class="comment">// 相等运算，因为a和b的值进行强转之后都是123，所以返回值是true。</span></span><br><span class="line">a === b ;			<span class="comment">//全等运算，因为a和b的类型不同（a是数字，b是字符），所以返回值为false</span></span><br></pre></td></tr></table></figure>
+<h2 id="条件操作符"><a href="#条件操作符" class="headerlink" title="条件操作符"></a>条件操作符</h2><p>条件操作符，是唯一的一个三目运算符。即，这个运算符会涉及三个数值。<br>符号：（a？b：c）其中，a，b，c分别表示一个数值。<br>含义，a为一个运算，运算完会产生一个布尔值，通过布尔值来判断最后得到的数值是b还是c。<br>如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> max = (a &gt; b ?a :b) <span class="comment">// 判断变量a和b 的大小，如果a》b，则输出a，反之，输出b。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="逗号操作符"><a href="#逗号操作符" class="headerlink" title="逗号操作符"></a>逗号操作符</h2><p>使用逗号操作符，可以在一条语句之中执行多个操作。如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> ,b = <span class="number">2</span>, c =<span class="number">3</span>; 	<span class="comment">// 定义变量a ， b ，c 。</span></span><br></pre></td></tr></table></figure>
+
+<p>至此，操作符讲解完毕。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95303083">Js基础引导（一）——（前言以及js简介）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95306622">Js基础引导（二）——语法</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95312163">Js基础引导（三）——变量和数据类型</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95984735">Js基础引导（四）——操作符</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/96016550">Js基础引导（五）——语句</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/96430593">Js基础引导（六）——函数</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xaihan.github.io/blog/2019/07/15/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E6%93%8D%E4%BD%9C%E7%AC%A6/" data-id="clftmvhqk000kvs5i1p9u53dc" data-title="Js基础引导（四）——操作符" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/07/18/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%E8%AF%AD%E5%8F%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Js基础引导（五）——语句
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/07/10/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E8%AF%AD%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Js基础引导（二）——语法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/">奇怪的需求</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" rel="tag">utils 实战技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" rel="tag">奇怪的需求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" rel="tag">实战技巧 rem转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" rel="tag">实战技巧 utils</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" rel="tag">工具配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" rel="tag">滚动条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" rel="tag">问题修复</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">utils 实战技巧</a> <a href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">基础知识</a> <a href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" style="font-size: 10px;">奇怪的需求</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" style="font-size: 10px;">实战技巧 rem转换</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" style="font-size: 10px;">实战技巧 utils</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" style="font-size: 13.33px;">工具配置</a> <a href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" style="font-size: 10px;">滚动条</a> <a href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" style="font-size: 16.67px;">问题修复</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">六月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2022/08/30/hello-world/">关于砚知和他的自我介绍</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/16/post-utils/%E8%8E%B7%E5%8F%96%E5%8C%97%E4%BA%AC%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8%EF%BC%89/">获取北京本地时间（已封装，即开即用）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Js基础引导（三）——变量和数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/BOM%E5%BC%95%E5%AF%BC%E2%80%94%E2%80%94Location%E5%AF%B9%E8%B1%A1/">BOM引导——Location对象</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/">手把手带你撸一个精准倒计时（已封装，即开即用~）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 XConb<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

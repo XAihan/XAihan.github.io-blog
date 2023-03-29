@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>多行省略问题详解：省略号和文字重叠，vue之中多行省略失效。 | 砚知</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近敲代码的时候，遇到一个很奇葩的问题，原因：客户需求，想要文字两端对齐，多行省略。如图：一，vue之中多行省略失效问题： **先说一下多行省略和文字居中的基本代码**：  12345678.aboutUs-text  &gt;&gt;&gt; .p&amp;#123;   overflow: hidden;  &#x2F;&#x2F;超出隐藏  text-overflow: ellipsis; &#x2F;&#x2F;文字超出部分省略号代替">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多行省略问题详解：省略号和文字重叠，vue之中多行省略失效。">
+<meta property="og:url" content="https://xaihan.github.io/blog/2019/06/20/post-project/post-bugFix/%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E9%97%AE%E9%A2%98%E8%AF%A6%E8%A7%A3%EF%BC%9A%E7%9C%81%E7%95%A5%E5%8F%B7%E5%92%8C%E6%96%87%E5%AD%97%E9%87%8D%E5%8F%A0%EF%BC%8Cvue%E4%B9%8B%E4%B8%AD%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%B1%E6%95%88%E3%80%82/">
+<meta property="og:site_name" content="砚知">
+<meta property="og:description" content="最近敲代码的时候，遇到一个很奇葩的问题，原因：客户需求，想要文字两端对齐，多行省略。如图：一，vue之中多行省略失效问题： **先说一下多行省略和文字居中的基本代码**：  12345678.aboutUs-text  &gt;&gt;&gt; .p&amp;#123;   overflow: hidden;  &#x2F;&#x2F;超出隐藏  text-overflow: ellipsis; &#x2F;&#x2F;文字超出部分省略号代替">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190620130837481.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019062013374881.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDIyMDY4MA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-06-20T05:47:47.000Z">
+<meta property="article:modified_time" content="2022-08-30T06:46:43.925Z">
+<meta property="article:author" content="XConb">
+<meta property="article:tag" content="问题修复">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190620130837481.png">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="砚知" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">砚知</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">水墨画出的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xaihan.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-post-project/post-bugFix/多行省略问题详解：省略号和文字重叠，vue之中多行省略失效。" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/06/20/post-project/post-bugFix/%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E9%97%AE%E9%A2%98%E8%AF%A6%E8%A7%A3%EF%BC%9A%E7%9C%81%E7%95%A5%E5%8F%B7%E5%92%8C%E6%96%87%E5%AD%97%E9%87%8D%E5%8F%A0%EF%BC%8Cvue%E4%B9%8B%E4%B8%AD%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%B1%E6%95%88%E3%80%82/" class="article-date">
+  <time class="dt-published" datetime="2019-06-20T05:47:47.000Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      多行省略问题详解：省略号和文字重叠，vue之中多行省略失效。
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近敲代码的时候，遇到一个很奇葩的问题，<br>原因：客户需求，想要文字两端对齐，多行省略。如图：<img src="https://img-blog.csdnimg.cn/20190620130837481.png" alt="如图所示"><br><strong>一，vue之中多行省略失效问题：</strong></p>
+<pre><code>**先说一下多行省略和文字居中的基本代码**：
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.aboutUs-text  &gt;&gt;&gt; .p&#123; </span><br><span class="line">  overflow: hidden;  //超出隐藏</span><br><span class="line">  text-overflow: ellipsis; //文字超出部分省略号代替</span><br><span class="line">  display: -webkit-box; //必须要的diaplay盒子模型</span><br><span class="line">  -webkit-line-clamp: 7; //行数省略，7为出现7行，之后省略</span><br><span class="line">  -webkit-box-orient: vertical; //规定排列方式为竖直</span><br><span class="line">  text-align: justify;//文字两端对齐</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>以上是基本代码，正常情况下，直接复制粘贴以上css样式就可以实现需求。
+ps：&gt;&gt;&gt;是vue里面的强制修改样式，因为内容是v-html的方法，所以要用到，正常情况下不需要加。
+</code></pre>
+<p><strong>但是，当我在vue之中使用的时候，问题出现了：虽然是同样的代码，在本地跑也没有问题，但是vue打包上传之后多行省略会失效！！！</strong></p>
+<p>经过长达两个小时的查探，发现问题所在：</p>
+<pre><code>**产生原因：** 这是webpack的锅，他会进行一个操作，从而使得  `display: -webkit-box`失效。
+**解决方法：** 在`display: -webkit-box`进行的时候关掉那个操作就好了。
+</code></pre>
+<p><strong>这是修改之后的代码：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.aboutUs-text &gt;&gt;&gt; p&#123;</span><br><span class="line">  overflow: hidden; </span><br><span class="line">  text-overflow: ellipsis; </span><br><span class="line">  display: -webkit-box; </span><br><span class="line">  -webkit-line-clamp: 7; </span><br><span class="line">   /*! autoprefixer: off */ 关闭操作</span><br><span class="line">  -webkit-box-orient: vertical; </span><br><span class="line">  /* autoprefixer: on */ 打开操作</span><br><span class="line">  text-align: justify;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，这样的话，就不会再出现vue打包之后多行省略失效的问题了。</p>
+<p><strong>二，省略号和文字重叠问题</strong></p>
+<pre><code>当解决了上一个问题之后，又出现了一个新的问题，那就是省略号和文字重叠。如图：
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2019062013374881.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDIyMDY4MA==,size_16,color_FFFFFF,t_70" alt="如图，出现了问题，文字和省略号重叠了"></p>
+<p><strong>如上图所示，重叠了！！！而且这个文字只在手机端会显示，也就是说，在pc端用浏览器测试的时候是不会出现问题的。</strong></p>
+<p>经过更长时间的查探，发现（猜测）问题所在：</p>
+<pre><code>**产生原因：** 当两端对齐和省略号一起使用时，省略号的地方足够再加上一个（半个）字，所以默认对齐。
+**解决方法：** 将宽度设置为em，目前没有发现再次出现问题，需要更多的真机测试来验证可行性。
+</code></pre>
+<p><strong>代码：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.aboutUs-text &#123;</span><br><span class="line">  width: 18em;</span><br><span class="line">  font-size: 13px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xaihan.github.io/blog/2019/06/20/post-project/post-bugFix/%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E9%97%AE%E9%A2%98%E8%AF%A6%E8%A7%A3%EF%BC%9A%E7%9C%81%E7%95%A5%E5%8F%B7%E5%92%8C%E6%96%87%E5%AD%97%E9%87%8D%E5%8F%A0%EF%BC%8Cvue%E4%B9%8B%E4%B8%AD%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%B1%E6%95%88%E3%80%82/" data-id="clftmvhqz0018vs5i7wucal6x" data-title="多行省略问题详解：省略号和文字重叠，vue之中多行省略失效。" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" rel="tag">问题修复</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/07/03/post-project/post-bugFix/vue%E9%80%9A%E8%BF%87js%E6%9D%A5%E8%AE%BE%E7%BD%AEdiv%E7%9A%84%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%89%80%E5%87%BA%E7%8E%B0%E7%9A%84%E8%B5%8B%E5%80%BC%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98%E3%80%82/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          vue通过js来设置div的最小高度所出现的赋值失败问题。
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/">奇怪的需求</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" rel="tag">utils 实战技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" rel="tag">奇怪的需求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" rel="tag">实战技巧 rem转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" rel="tag">实战技巧 utils</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" rel="tag">工具配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" rel="tag">滚动条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" rel="tag">问题修复</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">utils 实战技巧</a> <a href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">基础知识</a> <a href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" style="font-size: 10px;">奇怪的需求</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" style="font-size: 10px;">实战技巧 rem转换</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" style="font-size: 10px;">实战技巧 utils</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" style="font-size: 13.33px;">工具配置</a> <a href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" style="font-size: 10px;">滚动条</a> <a href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" style="font-size: 16.67px;">问题修复</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">六月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2022/08/30/hello-world/">关于砚知和他的自我介绍</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/16/post-utils/%E8%8E%B7%E5%8F%96%E5%8C%97%E4%BA%AC%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8%EF%BC%89/">获取北京本地时间（已封装，即开即用）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Js基础引导（三）——变量和数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/BOM%E5%BC%95%E5%AF%BC%E2%80%94%E2%80%94Location%E5%AF%B9%E8%B1%A1/">BOM引导——Location对象</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/">手把手带你撸一个精准倒计时（已封装，即开即用~）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 XConb<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>vue通过js来设置div的最小高度所出现的赋值失败问题。 | 砚知</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近敲代码遇到一个小问题，如图：       当页面内容不够多时，会出现底部栏上移的问题。一开始我想到的解决方式时，获取到屏幕的高度，并将它赋值为中间的div之中，这就能完美解决footer下移的问题了，说干就干。当时写出的代码是这样的： 12345mounted()&amp;#123;   console.log(&amp;#x27;进行了高度赋值&amp;#x27;);   console.log($(documen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue通过js来设置div的最小高度所出现的赋值失败问题。">
+<meta property="og:url" content="https://xaihan.github.io/blog/2019/07/03/post-project/post-bugFix/vue%E9%80%9A%E8%BF%87js%E6%9D%A5%E8%AE%BE%E7%BD%AEdiv%E7%9A%84%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%89%80%E5%87%BA%E7%8E%B0%E7%9A%84%E8%B5%8B%E5%80%BC%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98%E3%80%82/">
+<meta property="og:site_name" content="砚知">
+<meta property="og:description" content="最近敲代码遇到一个小问题，如图：       当页面内容不够多时，会出现底部栏上移的问题。一开始我想到的解决方式时，获取到屏幕的高度，并将它赋值为中间的div之中，这就能完美解决footer下移的问题了，说干就干。当时写出的代码是这样的： 12345mounted()&amp;#123;   console.log(&amp;#x27;进行了高度赋值&amp;#x27;);   console.log($(documen">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190703222117613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDIyMDY4MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190703222846746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDIyMDY4MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190703223220541.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190703223120379.png">
+<meta property="article:published_time" content="2019-07-03T14:41:54.000Z">
+<meta property="article:modified_time" content="2022-08-30T06:46:43.925Z">
+<meta property="article:author" content="XConb">
+<meta property="article:tag" content="问题修复">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190703222117613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDIyMDY4MA==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="砚知" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">砚知</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">水墨画出的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xaihan.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-post-project/post-bugFix/vue通过js来设置div的最小高度所出现的赋值失败问题。" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/07/03/post-project/post-bugFix/vue%E9%80%9A%E8%BF%87js%E6%9D%A5%E8%AE%BE%E7%BD%AEdiv%E7%9A%84%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%89%80%E5%87%BA%E7%8E%B0%E7%9A%84%E8%B5%8B%E5%80%BC%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98%E3%80%82/" class="article-date">
+  <time class="dt-published" datetime="2019-07-03T14:41:54.000Z" itemprop="datePublished">2019-07-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      vue通过js来设置div的最小高度所出现的赋值失败问题。
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近敲代码遇到一个小问题，如图：<br>       <strong>当页面内容不够多时，会出现底部栏上移的问题。</strong><br><img src="https://img-blog.csdnimg.cn/20190703222117613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDIyMDY4MA==,size_16,color_FFFFFF,t_70" alt="当页面内容不够多时，会出现底部栏上移的问题。"><br>一开始我想到的解决方式时，获取到屏幕的高度，并将它赋值为中间的div之中，这就能完美解决footer下移的问题了，说干就干。当时写出的代码是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">   console.log(&#x27;进行了高度赋值&#x27;);</span><br><span class="line">   console.log($(document).height()/1.7);</span><br><span class="line">   $(&quot;#detail&quot;).css(&quot;min-height&quot;, $(document).height()/1.7+ &quot;px&quot;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>这是我一开始的打算，在mounted周期之中获取高度并进行高度赋值。<br>但是不知道为什么，一直出现赋值不成功的问题。但是当你进行热加载一次之后就会赋值成功。如下（热加载之后，热加载之前和最开始的图一样。）：<br><img src="https://img-blog.csdnimg.cn/20190703222846746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDIyMDY4MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>经过研究发现，在<strong>第一次</strong>进入的时候，<strong>最小高度并没有赋值成功</strong>：<br><img src="https://img-blog.csdnimg.cn/20190703223220541.png" alt="在这里插入图片描述"></p>
+<p><strong>而当重新热加载之后就赋值成功了：</strong><br><img src="https://img-blog.csdnimg.cn/20190703223120379.png" alt="如下图"><br>目前为什么会出现这个原因还没有搞清楚，但博主能感觉出应该是周期加载那一块的问题。</p>
+<p><strong>那么重头戏来了，说完了问题，咱们来说一下解决方法：</strong><br>博主经过多方查询（百度），得到的方法如下：</p>
+<p>给需要设置高度的div添加**:style&#x3D;”contentStyleObj”**（可修改样式）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;detail&quot;  id=&quot;detail&quot; :style=&quot;contentStyleObj&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;top&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;title&quot;&gt;&#123;&#123;detail.article.title&#125;&#125;这是一个很长很长很长的标题，他真的超级长&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;date&quot;&gt;发布日期 : &#123;&#123; detail.article.publishTime | dateformat(&#x27;YYYY-MM-DD&#x27;)&#125;&#125;&lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;content&quot; id=&quot;content&quot; v-html=&quot;detail.article.content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>在methods之中添加方法，用来给样式赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">  getHeight()&#123;</span><br><span class="line">    this.contentStyleObj.height=window.innerHeight/1.5+&#x27;px&#x27;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>在created方法之中调用方法，完美解决问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">  this.getHeight()</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>PS：尽管如此，但是对于上面代码所出现的问题，博主还是没（懒）有（得）搞清楚，所以如果有大佬知道原因的话，可以评论指导一下小弟。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xaihan.github.io/blog/2019/07/03/post-project/post-bugFix/vue%E9%80%9A%E8%BF%87js%E6%9D%A5%E8%AE%BE%E7%BD%AEdiv%E7%9A%84%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%89%80%E5%87%BA%E7%8E%B0%E7%9A%84%E8%B5%8B%E5%80%BC%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98%E3%80%82/" data-id="clftmvhqy0016vs5i162y753q" data-title="vue通过js来设置div的最小高度所出现的赋值失败问题。" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" rel="tag">问题修复</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/07/10/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%EF%BC%88%E5%89%8D%E8%A8%80%E4%BB%A5%E5%8F%8Ajs%E7%AE%80%E4%BB%8B%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Js基础引导（一）——（前言以及js简介）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/06/20/post-project/post-bugFix/%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E9%97%AE%E9%A2%98%E8%AF%A6%E8%A7%A3%EF%BC%9A%E7%9C%81%E7%95%A5%E5%8F%B7%E5%92%8C%E6%96%87%E5%AD%97%E9%87%8D%E5%8F%A0%EF%BC%8Cvue%E4%B9%8B%E4%B8%AD%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%B1%E6%95%88%E3%80%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">多行省略问题详解：省略号和文字重叠，vue之中多行省略失效。</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/">奇怪的需求</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" rel="tag">utils 实战技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" rel="tag">奇怪的需求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" rel="tag">实战技巧 rem转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" rel="tag">实战技巧 utils</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" rel="tag">工具配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" rel="tag">滚动条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" rel="tag">问题修复</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">utils 实战技巧</a> <a href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">基础知识</a> <a href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" style="font-size: 10px;">奇怪的需求</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" style="font-size: 10px;">实战技巧 rem转换</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" style="font-size: 10px;">实战技巧 utils</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" style="font-size: 13.33px;">工具配置</a> <a href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" style="font-size: 10px;">滚动条</a> <a href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" style="font-size: 16.67px;">问题修复</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">六月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2022/08/30/hello-world/">关于砚知和他的自我介绍</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/16/post-utils/%E8%8E%B7%E5%8F%96%E5%8C%97%E4%BA%AC%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8%EF%BC%89/">获取北京本地时间（已封装，即开即用）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Js基础引导（三）——变量和数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/BOM%E5%BC%95%E5%AF%BC%E2%80%94%E2%80%94Location%E5%AF%B9%E8%B1%A1/">BOM引导——Location对象</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/">手把手带你撸一个精准倒计时（已封装，即开即用~）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 XConb<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

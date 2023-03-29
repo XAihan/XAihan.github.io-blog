@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Js基础引导（一）——（前言以及js简介） | 砚知</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言你好，朋友，经过对于一段时间的学习以及强行拉赞助（关注），我觉得有必要为初学者普及一下js的学习以及常用的js方法（写法）。 目前js基础引导，总共6章，对于新新手来说，甚至不需要理解，只需要看过一遍，那么在你步入校园之后的基础学习阶段，依然会有很大的帮助。 对于新手来说可以夯实基础。对于准新手（准大一），可以提前有一个概念。 放心，兄弟们，不要怕我误人子弟，最近在学习红宝书（JavaScri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Js基础引导（一）——（前言以及js简介）">
+<meta property="og:url" content="https://xaihan.github.io/blog/2019/07/10/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%EF%BC%88%E5%89%8D%E8%A8%80%E4%BB%A5%E5%8F%8Ajs%E7%AE%80%E4%BB%8B%EF%BC%89/">
+<meta property="og:site_name" content="砚知">
+<meta property="og:description" content="前言你好，朋友，经过对于一段时间的学习以及强行拉赞助（关注），我觉得有必要为初学者普及一下js的学习以及常用的js方法（写法）。 目前js基础引导，总共6章，对于新新手来说，甚至不需要理解，只需要看过一遍，那么在你步入校园之后的基础学习阶段，依然会有很大的帮助。 对于新手来说可以夯实基础。对于准新手（准大一），可以提前有一个概念。 放心，兄弟们，不要怕我误人子弟，最近在学习红宝书（JavaScri">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-10T01:24:48.000Z">
+<meta property="article:modified_time" content="2022-08-30T06:46:43.922Z">
+<meta property="article:author" content="XConb">
+<meta property="article:tag" content="基础知识">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="砚知" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">砚知</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">水墨画出的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xaihan.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-post-basics/Js基础引导（一）——（前言以及js简介）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/07/10/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%EF%BC%88%E5%89%8D%E8%A8%80%E4%BB%A5%E5%8F%8Ajs%E7%AE%80%E4%BB%8B%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-07-10T01:24:48.000Z" itemprop="datePublished">2019-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Js基础引导（一）——（前言以及js简介）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>你好，朋友，</strong><br>经过对于一段时间的学习以及强行拉赞助（关注），我觉得有必要为初学者普及一下js的学习以及常用的js方法（写法）。</p>
+<p><strong>目前js基础引导，总共6章，对于新新手来说，甚至不需要理解，只需要看过一遍，那么在你步入校园之后的基础学习阶段，依然会有很大的帮助。</strong></p>
+<p><strong>对于新手来说可以夯实基础。</strong><br><strong>对于准新手（准大一），可以提前有一个概念。</strong></p>
+<p>放心，兄弟们，<strong>不要怕我误人子弟</strong>，最近在学习<strong>红宝书（JavaScript高级程序设计）</strong>，所以写的<strong>绝对可靠</strong>，另外，因为这是为初学者准备的，所以博主所描述的内容将更多的偏向于实用性方法，理念性知识会在我<strong>二刷红宝书</strong>的时候进行补充。</p>
+<h2 id="Js简介——理念"><a href="#Js简介——理念" class="headerlink" title="Js简介——理念"></a>Js简介——理念</h2><p>咱们先说说什么是<strong>JS（JavaScript）</strong>，js是前端必须掌握的编程语言之一（另外两个是html和css）。<br><strong>一个完整的JS由三部分组成：</strong></p>
+<ul>
+<li>核心（ECMAScript）   ——提供核心语言功能</li>
+<li>文档对象模型（DOM）——提供访问和操作网页内容的方法和接口</li>
+<li>浏览器对象模型（BOM）——提供与浏览器交互的方法和接口</li>
+</ul>
+<p><strong>解读：</strong></p>
+<ul>
+<li>核心：初学者不会涉及过多这个东西，记住这是核心语法支持就好。</li>
+<li>文档对象模型（DOM）：Dom这里负责支持html引入外来文件，比如说你写的外端css文件。</li>
+<li>浏览器对象模型（BOM）：从根本上来讲，BOM只处理浏览器窗口和框架，但是人们习惯上把所有针对浏览器的JSS扩展都算BOM的一部分。<br> 以下是一些扩展：<ol>
+<li>弹出新浏览器窗口的功能</li>
+<li>移动，缩放和关闭浏览器的功能</li>
+<li>提供详细的navigation对象</li>
+<li>提供当前页面的location对象</li>
+<li>提供用户显示器分辨率详细信息的screen对象</li>
+<li>对cookies的支持</li>
+</ol>
+</li>
+</ul>
+<p>这一章内容就这么多，算是一个过度，下一张开始，我们开始走“干货”。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95303083">Js基础引导（一）——（前言以及js简介）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95306622">Js基础引导（二）——语法</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95312163">Js基础引导（三）——变量和数据类型</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/95984735">Js基础引导（四）——操作符</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/96016550">Js基础引导（五）——语句</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44220680/article/details/96430593">Js基础引导（六）——函数</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xaihan.github.io/blog/2019/07/10/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%EF%BC%88%E5%89%8D%E8%A8%80%E4%BB%A5%E5%8F%8Ajs%E7%AE%80%E4%BB%8B%EF%BC%89/" data-id="clftmvhqf0009vs5ih93b46zo" data-title="Js基础引导（一）——（前言以及js简介）" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/07/10/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E8%AF%AD%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Js基础引导（二）——语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/07/03/post-project/post-bugFix/vue%E9%80%9A%E8%BF%87js%E6%9D%A5%E8%AE%BE%E7%BD%AEdiv%E7%9A%84%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%89%80%E5%87%BA%E7%8E%B0%E7%9A%84%E8%B5%8B%E5%80%BC%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98%E3%80%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">vue通过js来设置div的最小高度所出现的赋值失败问题。</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/">奇怪的需求</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" rel="tag">utils 实战技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" rel="tag">奇怪的需求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" rel="tag">实战技巧 rem转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" rel="tag">实战技巧 utils</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" rel="tag">工具配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" rel="tag">滚动条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" rel="tag">问题修复</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">utils 实战技巧</a> <a href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">基础知识</a> <a href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" style="font-size: 10px;">奇怪的需求</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" style="font-size: 10px;">实战技巧 rem转换</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" style="font-size: 10px;">实战技巧 utils</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" style="font-size: 13.33px;">工具配置</a> <a href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" style="font-size: 10px;">滚动条</a> <a href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" style="font-size: 16.67px;">问题修复</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">六月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2022/08/30/hello-world/">关于砚知和他的自我介绍</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/16/post-utils/%E8%8E%B7%E5%8F%96%E5%8C%97%E4%BA%AC%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8%EF%BC%89/">获取北京本地时间（已封装，即开即用）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Js基础引导（三）——变量和数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/BOM%E5%BC%95%E5%AF%BC%E2%80%94%E2%80%94Location%E5%AF%B9%E8%B1%A1/">BOM引导——Location对象</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/">手把手带你撸一个精准倒计时（已封装，即开即用~）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 XConb<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>手把手带你撸一个精准倒计时（已封装，即开即用~） | 砚知</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言事情是这样的，在我们的开发项目中之中，很可能出现需要支付或者秒杀的场景。在这个场景之下，我们难免会遇到精准计时功能。比如我们生成订单但是还没有付款的时候，会出现一个倒计时 “请在 03 分 23 秒完成付款，超时自动取消”。亦或者是 “12：00 准时开售”等内容。这个功能是如何实现的，中间又有什么样的坑在等着你呢？现在，我们就来一起手撸一个准确的计时功能吧~ 需求分析虽然上述有两种情况，一种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手带你撸一个精准倒计时（已封装，即开即用~）">
+<meta property="og:url" content="https://xaihan.github.io/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/">
+<meta property="og:site_name" content="砚知">
+<meta property="og:description" content="前言事情是这样的，在我们的开发项目中之中，很可能出现需要支付或者秒杀的场景。在这个场景之下，我们难免会遇到精准计时功能。比如我们生成订单但是还没有付款的时候，会出现一个倒计时 “请在 03 分 23 秒完成付款，超时自动取消”。亦或者是 “12：00 准时开售”等内容。这个功能是如何实现的，中间又有什么样的坑在等着你呢？现在，我们就来一起手撸一个准确的计时功能吧~ 需求分析虽然上述有两种情况，一种">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/70f1af8d21424c2780bde1611f58e64b~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc78f27c9bfd48b69986b51dc1fd2674~tplv-k3u1fbpfcp-watermark.image">
+<meta property="article:published_time" content="2022-08-03T06:52:08.000Z">
+<meta property="article:modified_time" content="2022-08-30T06:46:43.926Z">
+<meta property="article:author" content="XConb">
+<meta property="article:tag" content="utils 实战技巧">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/70f1af8d21424c2780bde1611f58e64b~tplv-k3u1fbpfcp-watermark.image">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="砚知" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">砚知</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">水墨画出的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xaihan.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-post-utils/手把手带你撸一个精准倒计时（已封装，即开即用~）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2022-08-03T06:52:08.000Z" itemprop="datePublished">2022-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      手把手带你撸一个精准倒计时（已封装，即开即用~）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>事情是这样的，在我们的开发项目中之中，很可能出现需要支付或者秒杀的场景。在这个场景之下，我们难免会遇到精准计时功能。比如我们生成订单但是还没有付款的时候，会出现一个倒计时 <strong>“请在 03 分 23 秒完成付款，超时自动取消”</strong>。亦或者是 “<strong>12：00 准时开售</strong>”等内容。这个功能是如何实现的，中间又有什么样的坑在等着你呢？现在，我们就来一起<strong>手撸一个准确的计时功能</strong>吧~</p>
+<h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>虽然上述有两种情况，一种秒杀、一种倒计时。但归根结底其实是同一件事情，就是精准计时。我们的难点主要在于：</p>
+<ol>
+<li><strong>如何保证计时器的准确行。</strong></li>
+<li><strong>需要可以自定义显示的格式</strong></li>
+<li><strong>使用场景较多，需要独立封装</strong></li>
+</ol>
+<h2 id="常规定时器的筛选"><a href="#常规定时器的筛选" class="headerlink" title="常规定时器的筛选"></a>常规定时器的筛选</h2><p>我们都知道 js 提供了两个计时器的功能，分别是 <code>setTimeout</code> 和 <code>setInterval</code>。<br>那不是正正好嘛。我需要一个计时器，哎呀，js 直接提供给我两个。怎么也够用了不是。<br><strong>NO，大漏特漏</strong> 。</p>
+<p>JS 的单线程特性使得同步任务执行过程中出现阻塞时，任务队列中的异步任务并不能及时执行，因此浏览器并不能保证在定时器设置的时间结束后代码总是被准时执行，从而造成了倒计时的偏差。 我们来盘点一下他们可能造成的误差（假设定时器为 1000ms）：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>setTimeout</th>
+<th>setInterval</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>现象</td>
+<td>触发事件的时间点和规定时间点偏差较大</td>
+<td>可能出现跳过其中一次事件的执行</td>
+</tr>
+<tr>
+<td>原因</td>
+<td>事件循环机制的原因，setTimeout的事件插入其实并不是精准的时间，因为<code>js是单线程的。规定的1000ms的延迟，其实并不是精准的1000ms，而是在当前任务结束轮到setTimeout执行的时候才进行1000ms的事件插入，而等待之前任务运行的那段时间，便是我们主要的误差值。</code></td>
+<td>大体原因和settimeOut一致。，setInterval会更精准，因为在执行的时候他打点的时间是标准的1000ms，不会因为其他事务的运行而延迟或者提前打点。<code>当打点的时间段有其他事务正在运行的话，那将占据打点执行的时间，从而导致本次打点事件被略过</code></td>
+</tr>
+<tr>
+<td>不适用的场景</td>
+<td>较为精准的计时（秒杀）</td>
+<td>过一秒变换一次布尔值（flag &#x3D; !flag）,如果略过会导致逻辑出错。</td>
+</tr>
+</tbody></table>
+<p>正常使用的倒计时逻辑为：</p>
+<ol>
+<li>使用<code>setTimeout递归调用</code>的方式形成类似<code>setinterval的语法糖</code>。来保证不会出现略过一次执行的问题。</li>
+<li>经过一段时间便会和当前时间进行比较，<code>抹平差值</code>。</li>
+</ol>
+<h2 id="更精准的定时器（requestAnimationFrame）"><a href="#更精准的定时器（requestAnimationFrame）" class="headerlink" title="更精准的定时器（requestAnimationFrame）"></a>更精准的定时器（requestAnimationFrame）</h2><p>如果只是单纯的实现这个功能， 自带的 api 确实是足够了。<br>但是！！！！</p>
+<ol>
+<li>产品的要求是什么！<br><strong>精准计时</strong>: 我们要有匠心，要追求完美！！！<code>（我绝对是自愿的，产品的🔪刀也没有架在我脖子上）</code></li>
+<li>产品用在什么地方！<br><strong>支付倒计时、抢购页面</strong>: 支付倒计时还好说，晚一秒什么的没关系，但是对于某东、某淘的定时秒杀来说。这一秒的误差可能导致你别说薅羊毛了，羊屁股都看不到。</li>
+</ol>
+<p>这个时候就会用到我们的 <code>requestAnimationFrame</code>属性了。<br>这个属性的详细内容可以参考 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903649366245384">requestAnimationFrame 用法 - 掘金 (juejin.cn)</a>。<br>我在这里简单汇总一下：</p>
+<ol>
+<li>根据浏览器的帧数进行回调，正常一秒有 60 帧，每一帧的执行时间大概在 16ms 左右，在每一帧的渲染的时候进行时间的比对。可以保证回调时间的精准性。 setTimeout 的缺陷被弥补。</li>
+<li>当浏览器性能差的时候，会自动调节帧数，不会出现略过某一次事件的情况。并且保证 1 秒的时间内肯定会有多次的帧渲染。不会出现略过某个事件的情况。 setInterval 的缺陷被弥补。</li>
+</ol>
+<p>具体差异可以去看 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7029252274299879454">requestAnimationFrame 执行机制探索 - 掘金 (juejin.cn)</a></p>
+<p>说了半天，我们上代码吧：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; interval  执行间隔，默认1s</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; cb 间隔结束后执行的方法</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; cancelCb 判断什么时候结束,返回值是布尔值，返回true则终止。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="title function_">mySetInterval</span>(<span class="params">cb, cancelCb, afterCancelCb, interval = <span class="number">1000</span></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">let</span> pre = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  <span class="keyword">let</span> fn = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    timer = <span class="title function_">requestAnimationFrame</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> cur = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">      <span class="keyword">if</span> (cur - pre &gt;= interval) &#123;</span><br><span class="line">        <span class="title function_">cb</span>();</span><br><span class="line">        pre = cur;</span><br><span class="line">      &#125;</span><br><span class="line">      timer = <span class="title function_">requestAnimationFrame</span>(fn);</span><br><span class="line">      <span class="keyword">if</span> (cancelCb &amp;&amp; <span class="title function_">cancelCb</span>()) &#123;</span><br><span class="line">        <span class="title function_">afterCancelCb</span>();</span><br><span class="line">        timer &amp;&amp; <span class="title function_">cancelAnimationFrame</span>(timer);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="title function_">fn</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用方法是这样的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟倒计时的功能</span></span><br><span class="line"><span class="keyword">let</span> flag = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">	flag = <span class="literal">true</span>;</span><br><span class="line">&#125;, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> nowTime = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line"><span class="keyword">let</span> prevTime = <span class="number">0</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;开始执行&#x27;</span>);</span><br><span class="line"><span class="title function_">mySetInterval</span>(</span><br><span class="line">	<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		prevTime = nowTime;</span><br><span class="line">		nowTime = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;过去了1s,具体时差：&#x27;</span>, nowTime - prevTime);</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> flag;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;结束的时候执行的回调&#x27;</span>);</span><br><span class="line">	&#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>大体思路就是：</p>
+<ol>
+<li>每一帧都会进行一次判断，看确定时间是否经过 1000ms。经过的话，则执行对应回调，否则无事发生。</li>
+<li>执行的最后进行终止帧事件的判断，当我们传入的第二个参数运行返回 true 的话，则代表到时间了，不需要继续执行下去了，取消对帧的监听。</li>
+<li>为了验证我们的精准性，我们使用上述代码，在每一次经过 1s 的时候进行经过时间的展示。</li>
+</ol>
+<p>看一下我们的效果吧：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/70f1af8d21424c2780bde1611f58e64b~tplv-k3u1fbpfcp-watermark.image" alt="interval.gif"></p>
+<p>我们看到这里的定时器只有第一次出现了 8ms 的偏差，然后就一直都是正正好。</p>
+<p>至此，我们的定时器精准度就可以达标了。看起来是不是很完美。是不是到这里就应该结束这个文章了。<br><strong>NO，大漏特漏</strong> 。</p>
+<h2 id="倒计时功能的实现"><a href="#倒计时功能的实现" class="headerlink" title="倒计时功能的实现"></a>倒计时功能的实现</h2><p>当我们拥有很精准的定时器之后，我们需要做的是什么。<br>我们需要进行时间的转换。需要把时间转换成 <code>d h:m:s</code> 这样的格式。 或者<code>03:24</code>这样的格式。<br>这块没什么可说的，直接上代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对事件进行修改</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; second 需要转换的秒数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; format  转换的格式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="title function_">formatDate</span>(<span class="params">second, format = <span class="string">&#x27;d h:m:s&#x27;</span></span>) &#123;</span><br><span class="line">  format = <span class="variable language_">this</span>.<span class="property">format</span> ? <span class="variable language_">this</span>.<span class="property">format</span> : format;</span><br><span class="line">  second = <span class="title class_">Number</span>(second);</span><br><span class="line">  <span class="keyword">let</span> sec = <span class="number">1</span>,</span><br><span class="line">    min = <span class="number">60</span> * sec,</span><br><span class="line">    hour = <span class="number">60</span> * min,</span><br><span class="line">    day = <span class="number">24</span> * hour;</span><br><span class="line">  <span class="keyword">let</span> formatObj = &#123;</span><br><span class="line">    <span class="attr">d</span>: <span class="built_in">parseInt</span>(second / day),</span><br><span class="line">    <span class="attr">h</span>: <span class="built_in">parseInt</span>((second % day) / hour),</span><br><span class="line">    <span class="attr">m</span>: <span class="built_in">parseInt</span>((second % hour) / min),</span><br><span class="line">    <span class="attr">s</span>: <span class="built_in">parseInt</span>(second % min)</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> time_str = format.<span class="title function_">replace</span>(<span class="regexp">/(d|h|m|s)/g</span>, <span class="function">(<span class="params">match</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> value = formatObj[match];</span><br><span class="line">    <span class="keyword">if</span> (match &amp;&amp; value &lt; <span class="number">10</span>) &#123;</span><br><span class="line">      value = <span class="string">&#x27;0&#x27;</span> + value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value || <span class="number">0</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> time_str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大体思路就是：</p>
+<ol>
+<li>传入需要转换的秒数，按照时间的计量单位算出对应的时分秒。</li>
+<li>创建一个 <code>formatObj</code> 对象，存储对应时分秒的<code>value</code>值。</li>
+<li>根据格式替换，将<code>value</code>值代入数据并返回。</li>
+</ol>
+<h2 id="封装成-class—解耦使用"><a href="#封装成-class—解耦使用" class="headerlink" title="封装成 class—解耦使用"></a>封装成 class—解耦使用</h2><p>老规矩，先上完全体的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">countdownClass</span> &#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; second // 需要倒计时的秒数</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; afterCancelCb // 倒计时结束时触发的事件</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; format // 时间格式</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">second, afterCancelCb, format = <span class="string">&#x27;&#x27;</span></span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">countdownStr</span> = <span class="variable language_">this</span>.<span class="title function_">formatDate</span>(second, format);</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">afterCancelCb</span> = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">format</span> = format;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">countDownNum</span> = second;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">afterCancelCb</span> = afterCancelCb;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 开始倒计时</span></span><br><span class="line">	<span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="title function_">mySetInterval</span>(</span><br><span class="line">			<span class="function">() =&gt;</span> &#123;</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">countdownStr</span> = <span class="variable language_">this</span>.<span class="title function_">formatDate</span>(<span class="variable language_">this</span>.<span class="property">countDownNum</span>--);</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="function">() =&gt;</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">countDownNum</span> &lt; <span class="number">0</span>;</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">afterCancelCb</span>,</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 对事件进行修改</span></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; second 需要转换的秒数</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; format  转换的格式</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="title function_">formatDate</span>(<span class="params">second, format = <span class="string">&#x27;d h:m:s&#x27;</span></span>) &#123;</span><br><span class="line">		format = <span class="variable language_">this</span>.<span class="property">format</span> ? <span class="variable language_">this</span>.<span class="property">format</span> : format;</span><br><span class="line">		second = <span class="title class_">Number</span>(second);</span><br><span class="line">		<span class="keyword">let</span> sec = <span class="number">1</span>,</span><br><span class="line">			min = <span class="number">60</span> * sec,</span><br><span class="line">			hour = <span class="number">60</span> * min,</span><br><span class="line">			day = <span class="number">24</span> * hour;</span><br><span class="line">		<span class="keyword">let</span> formatObj = &#123;</span><br><span class="line">			<span class="attr">d</span>: <span class="built_in">parseInt</span>(second / day),</span><br><span class="line">			<span class="attr">h</span>: <span class="built_in">parseInt</span>((second % day) / hour),</span><br><span class="line">			<span class="attr">m</span>: <span class="built_in">parseInt</span>((second % hour) / min),</span><br><span class="line">			<span class="attr">s</span>: <span class="built_in">parseInt</span>(second % min),</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="keyword">const</span> time_str = format.<span class="title function_">replace</span>(<span class="regexp">/(d|h|m|s)/g</span>, <span class="function">(<span class="params">match</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">let</span> value = formatObj[match];</span><br><span class="line">			<span class="keyword">if</span> (match &amp;&amp; value &lt; <span class="number">10</span>) &#123;</span><br><span class="line">				value = <span class="string">&#x27;0&#x27;</span> + value;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> value || <span class="number">0</span>;</span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="keyword">return</span> time_str;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; interval  执行间隔，默认1s</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; cb 间隔结束后执行的方法</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; cancelCb 判断什么时候结束,返回值是布尔值，返回true则终止。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="title function_">mySetInterval</span>(<span class="params">cb, cancelCb, afterCancelCb, interval = <span class="number">1000</span></span>) &#123;</span><br><span class="line">		<span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">let</span> pre = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">		<span class="keyword">let</span> fn = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">			timer = <span class="title function_">requestAnimationFrame</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">				<span class="keyword">let</span> cur = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">				<span class="keyword">if</span> (cur - pre &gt;= interval) &#123;</span><br><span class="line">					<span class="title function_">cb</span>();</span><br><span class="line">					pre = cur;</span><br><span class="line">				&#125;</span><br><span class="line">				timer = <span class="title function_">requestAnimationFrame</span>(fn);</span><br><span class="line">				<span class="keyword">if</span> (cancelCb &amp;&amp; <span class="title function_">cancelCb</span>()) &#123;</span><br><span class="line">					<span class="title function_">afterCancelCb</span>();</span><br><span class="line">					timer &amp;&amp; <span class="title function_">cancelAnimationFrame</span>(timer);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="title function_">fn</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">countdown</span>(<span class="params">second, afterCancelCb, format</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">countdownClass</span>(second, afterCancelCb, format);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; countdown &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用方法</span></span><br><span class="line"><span class="keyword">const</span> countdownObj = <span class="title function_">countdown</span>(</span><br><span class="line">	<span class="number">10</span>,</span><br><span class="line">	<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;经过了10s&#x27;</span>);</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&#x27;m:s&#x27;</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">countdownObj.<span class="title function_">start</span>();</span><br></pre></td></tr></table></figure>
+
+<p>大体思路就是：</p>
+<ol>
+<li>构造函数的时候初始化 countdownStr 是为了保存格式化后的样式。 其他看注释即可。</li>
+<li>初始化完成之后，并不是即时倒计时的，需要通过<code>start</code>方法启动。</li>
+<li>当满足结束条件时，触发 <code>afterCancelCb</code> 方法，结束回调，清除定时器。</li>
+</ol>
+<p>我们看一下这个的效果：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc78f27c9bfd48b69986b51dc1fd2674~tplv-k3u1fbpfcp-watermark.image" alt="formatCountdown.gif"></p>
+<h2 id="另一种思路"><a href="#另一种思路" class="headerlink" title="另一种思路"></a>另一种思路</h2><p>先说说现在这个思路哈。</p>
+<ol>
+<li>一开始打算传参并不是<code>倒计时的秒数</code>，而是<code>最终结束时间</code>。希望通过<code>new Date().getTime()</code>来判断是否结束。</li>
+<li>这种情况有一个很大的弊端，那就是获取的是本地时间，如果用户篡改了时间的话，会导致提前触发或者不触发。</li>
+<li>在这里有两种思路可供选择<ol>
+<li>像我这样，让后端直接返回倒计时的时间。不进行本地时间的读取。</li>
+<li>获取网络上的当地时间，不适用当地时间—<a target="_blank" rel="noopener" href="https://www.jsjiami.com/article/get-now-time.html">获取北京当地时间的 api</a></li>
+</ol>
+</li>
+</ol>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>初来乍到，如果写的不合逻辑或者哪里乱糟糟的话，欢迎指出问题。我会慢慢改进的~~~</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903649366245384">requestAnimationFrame 用法 - 掘金 (juejin.cn)</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7029252274299879454">requestAnimationFrame 执行机制探索 - 掘金 (juejin.cn)</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7032951989348597797">实现一个比较精准的倒计时？ - 掘金 (juejin.cn)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xaihan.github.io/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/" data-id="clftmvhqq000xvs5i3866hr0a" data-title="手把手带你撸一个精准倒计时（已封装，即开即用~）" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" rel="tag">utils 实战技巧</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2022/08/11/post-basics/BOM%E5%BC%95%E5%AF%BC%E2%80%94%E2%80%94Location%E5%AF%B9%E8%B1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          BOM引导——Location对象
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/12/11/post-project/post-strangePro/css%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">css自定义滚动条样式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/">奇怪的需求</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" rel="tag">utils 实战技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" rel="tag">奇怪的需求</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" rel="tag">实战技巧 rem转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" rel="tag">实战技巧 utils</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" rel="tag">工具配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" rel="tag">滚动条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" rel="tag">问题修复</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/utils-%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">utils 实战技巧</a> <a href="/blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">基础知识</a> <a href="/blog/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E9%9C%80%E6%B1%82/" style="font-size: 10px;">奇怪的需求</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-rem%E8%BD%AC%E6%8D%A2/" style="font-size: 10px;">实战技巧 rem转换</a> <a href="/blog/tags/%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7-utils/" style="font-size: 10px;">实战技巧 utils</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" style="font-size: 13.33px;">工具配置</a> <a href="/blog/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/" style="font-size: 10px;">滚动条</a> <a href="/blog/tags/%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" style="font-size: 16.67px;">问题修复</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">六月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2022/08/30/hello-world/">关于砚知和他的自我介绍</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/16/post-utils/%E8%8E%B7%E5%8F%96%E5%8C%97%E4%BA%AC%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8%EF%BC%89/">获取北京本地时间（已封装，即开即用）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/Js%E5%9F%BA%E7%A1%80%E5%BC%95%E5%AF%BC%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Js基础引导（三）——变量和数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/post-basics/BOM%E5%BC%95%E5%AF%BC%E2%80%94%E2%80%94Location%E5%AF%B9%E8%B1%A1/">BOM引导——Location对象</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/03/post-utils/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E6%92%B8%E4%B8%80%E4%B8%AA%E7%B2%BE%E5%87%86%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%88%E5%B7%B2%E5%B0%81%E8%A3%85%EF%BC%8C%E5%8D%B3%E5%BC%80%E5%8D%B3%E7%94%A8~%EF%BC%89/">手把手带你撸一个精准倒计时（已封装，即开即用~）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 XConb<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
